@@ -1,16 +1,10 @@
-var mongoose = require("mongoose");
-        Schema = mongoose.Schema,
-        ObjectId = Schema.ObjectId,
-        Boolean = Schema.Boolean,
-        String = Schema.String,
-        Date = Schema.Date;
+var mongoose = require("mongoose"),
+    Schema = mongoose.Schema,
+    ObjectId = Schema.ObjectId;
 
 var AclResourceSchema = new Schema({
 	"acl_resource_id": ObjectId,
-	"resource_name": {
-		"type": String,
-		"required": true
-	},
+	"resource_name": String,
 	"is_active": {
 		"type": Boolean,
 		"required": true,
@@ -34,5 +28,5 @@ var AclResourceSchema = new Schema({
 	"autoIndex": false
 });
 
-AclResourceSchema.index({"acl_resource_id": 1, "resource_name": 1);
+AclResourceSchema.index({"acl_resource_id": 1, "resource_name": 1});
 module.exports = mongoose.model("AclResource", AclResourceSchema);

@@ -1,0 +1,14 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+/*HTML 5 compat*/
+header, section, article, nav, footer, aside, hgroup{
+    display: block;
+}
+
+
+a {
+  color: #00B7FF;
+}

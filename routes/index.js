@@ -4,5 +4,6 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Express' });
+    res.setHeader('Content-Type', 'application/json');
+    res.send({message: 'hello!'});
 };

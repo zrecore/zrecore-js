@@ -6,13 +6,12 @@
     "start": "node app"
   },
   "dependencies": {
-    "express": "3.1.0",
+    "restify": "2.x",
     "mongodb": "*",
     "mongoose": "3.6.x",
-    "jade": "*",
-    "less": "1.x",
+    "socket.io": "*",
     "session": "*",
-    "jquery": "*",
-    "nodeunit": "*"
+    "nodeunit": "*",
+    "extend": "*"
   }
 }

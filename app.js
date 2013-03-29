@@ -2,36 +2,39 @@
 /**
  * Module dependencies.
  */
+var port = 8080;
+var useSSL = false;
+var sslCertificatePath = '';
+var sslKeyPath = '';
+var sslCaPath = '';
 
-var express = require('express')
-  , routes = require('./routes')
+var routes = require('./routes')
   , user = require('./routes/user')
   , aclPermission = require('./routes/acl-permission')
   , http = require('http')
-  , path = require('path');
+  , path = require('path')
+  , fs = require('fs')
+  , restify = require('restify');
 
-var app = express();
 
-app.configure(function(){
-  app.set('port', process.env.PORT || 3000);
-  app.set('views', __dirname + '/views');
-  app.set('view engine', 'jade');
-  app.use(express.favicon());
-  app.use(express.logger('dev'));
-  app.use(express.bodyParser());
-  app.use(express.methodOverride());
-  app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
-});
+var server;
 
-app.configure('development', function(){
-  app.use(express.errorHandler());
-});
+if ( useSSL == true) {
+    server = restify.createServer({
+        certificate: fs.readFileSync(sslCertificatePath),
+        key: fs.readFileSync(sslKeyPath),
+        ca: fs.readFileSync(sslCaPath),
+        requestCert: true,
+        rejectUnauthorized: true
+    });
+} else {
+    server = restify.createServer({
+
+    });
+}
 
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/zrecore');
-
-app.get('/', routes.index);
 
 /**
  * ACL models
@@ -40,11 +43,14 @@ app.get('/', routes.index);
     /**
      * AclPermission
      */
-    app.get('/acl-permission', aclPermission.list);
-    app.get('/acl-permission/:id', aclPermission.get);
-    app.put('/acl-permission/:id', aclPermission.put);
-    app.post('/acl-permission/:id', aclPermission.post);
-    app.delete('/acl-permission/:id', aclPermission.delete);
+    server.get('/', routes.index);
+
+    server.get('/acl-permission', aclPermission.listAction);
+    server.get('/acl-permission/:id', aclPermission.getAction);
+    server.put('/acl-permission/:id', aclPermission.putAction);
+    server.post('/acl-permission/:id', aclPermission.postAction);
+    server.del('/acl-permission/:id', aclPermission.deleteAction);
+    server.head('/acl-permission', aclPermission.headAction);
 
     /**
      * AclResource
@@ -56,8 +62,7 @@ app.get('/', routes.index);
      * @todo Fill in the AclRole end-points
      */
 
-app.get('/user', user.list);
 
-http.createServer(app).listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+server.listen(port, function () {
+    console.log('Server is running on port ' + port);
 });

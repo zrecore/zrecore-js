@@ -7,6 +7,8 @@ var useSSL = false;
 var sslCertificatePath = '';
 var sslKeyPath = '';
 var sslCaPath = '';
+var databaseHost = 'localhost';
+var databaseName = 'zrecore';
 
 var routes = require('./routes')
   , http = require('http')
@@ -17,7 +19,7 @@ var routes = require('./routes')
 
 
 var server;
-
+// ...Do we want to enable SSL support?
 if ( useSSL == true) {
     server = restify.createServer({
         certificate: fs.readFileSync(sslCertificatePath),
@@ -31,9 +33,9 @@ if ( useSSL == true) {
 
     });
 }
-
+// ...Set up our connection to the database.
 var mongoose = require("mongoose");
-mongoose.connect('mongodb://localhost/zrecore');
+mongoose.connect('mongodb://' + databaseHost + '/' + databaseName);
 
 /**
  * Set up our REST controllers.

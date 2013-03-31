@@ -3,8 +3,12 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var AclPermissionSchema = new Schema({
-	"acl_permission_id": ObjectId,
-	"permission_name": String,
+	"id": ObjectId,
+	"permission_name": {
+        "type": String,
+        "required": true,
+        "default": ""
+    },
 	"is_active": {
 		"type": Boolean,
 		"required": true,

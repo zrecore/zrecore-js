@@ -3,7 +3,7 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var CategorySchema = new Schema({
-    "category_id": ObjectId,
+    "id": ObjectId,
     "name": String,
     "slug": String,
     "is_active": {

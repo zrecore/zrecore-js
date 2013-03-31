@@ -12,6 +12,7 @@
     "socket.io": "*",
     "session": "*",
     "nodeunit": "*",
-    "extend": "*"
+    "extend": "*",
+    "underscore": "*"
   }
 }

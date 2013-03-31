@@ -3,7 +3,7 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var CommentSchema = new Schema({
-    "comment_id": ObjectId,
+    "id": ObjectId,
     "user_id": ObjectId,
     "is_active": {
         "type": Boolean,

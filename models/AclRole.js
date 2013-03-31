@@ -3,7 +3,7 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var AclRoleSchema = new Schema({
-	"acl_role_id": ObjectId,
+	"id": ObjectId,
 	"role_name": String,
 	"is_active": {
 		"type": Boolean,

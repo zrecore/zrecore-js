@@ -9,8 +9,6 @@ var sslKeyPath = '';
 var sslCaPath = '';
 
 var routes = require('./routes')
-  , user = require('./routes/user')
-  , aclPermission = require('./routes/acl-permission')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
@@ -37,30 +35,23 @@ var mongoose = require("mongoose");
 mongoose.connect('mongodb://localhost/zrecore');
 
 /**
- * ACL models
+ * Set up our REST controllers.
  */
 
-    /**
-     * AclPermission
-     */
-    server.get('/', routes.index);
+server.use(restify.bodyParser());
 
-    server.get('/acl-permission', aclPermission.listAction);
-    server.get('/acl-permission/:id', aclPermission.getAction);
-    server.put('/acl-permission/:id', aclPermission.putAction);
-    server.post('/acl-permission/:id', aclPermission.postAction);
-    server.del('/acl-permission/:id', aclPermission.deleteAction);
-    server.head('/acl-permission', aclPermission.headAction);
+var aclPermission = require('./routes/acl-permission');
 
-    /**
-     * AclResource
-     * @todo Fill in the AclResource end-points
-     */
 
-    /**
-     * AclRole
-     * @todo Fill in the AclRole end-points
-     */
+server.get('/acl-permission', aclPermission.list);
+server.get('/acl-permission', aclPermission.get);
+server.put('/acl-permission/:id', aclPermission.put);
+server.post('/acl-permission/', aclPermission.post);
+server.post('/acl-permission/:id', aclPermission.post);
+server.del('/acl-permission/:id', aclPermission.del);
+
+//var ctrlAclResource = new Rest('./acl-resource', '../models/AclResource.js');
+//ctrlAclResource.setUp(server);
 
 
 server.listen(port, function () {

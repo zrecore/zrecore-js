@@ -12,7 +12,8 @@ var routes = require('./routes')
   , http = require('http')
   , path = require('path')
   , fs = require('fs')
-  , restify = require('restify');
+  , restify = require('restify')
+  , crud = require('./lib/crud.js');
 
 
 var server;
@@ -41,17 +42,14 @@ mongoose.connect('mongodb://localhost/zrecore');
 server.use(restify.bodyParser());
 
 var aclPermission = require('./routes/acl-permission');
+var aclResource = require('./routes/acl-resource');
+var aclRole = require('./routes/acl-role');
+var category = require('./routes/category');
 
-
-server.get('/acl-permission', aclPermission.list);
-server.get('/acl-permission', aclPermission.get);
-server.put('/acl-permission/:id', aclPermission.put);
-server.post('/acl-permission/', aclPermission.post);
-server.post('/acl-permission/:id', aclPermission.post);
-server.del('/acl-permission/:id', aclPermission.del);
-
-//var ctrlAclResource = new Rest('./acl-resource', '../models/AclResource.js');
-//ctrlAclResource.setUp(server);
+crud.setUpServer(server, '/acl-permission', aclPermission);
+crud.setUpServer(server, '/acl-resource', aclResource);
+crud.setUpServer(server, '/acl-role', aclRole);
+crud.setUpServer(server, '/category', category);
 
 
 server.listen(port, function () {

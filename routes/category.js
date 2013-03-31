@@ -1,4 +1,4 @@
-var mModel  = require('../models/AclResource.js'),
+var mModel  = require('../models/Category.js'),
     _       = require('underscore'),
     c    = require('../lib/crud.js');
 

@@ -4,7 +4,10 @@ var mongoose = require("mongoose"),
 
 var CommentSchema = new Schema({
     "id": ObjectId,
-    "user_id": ObjectId,
+    "user_id": {
+        "type": ObjectId,
+        "required": true
+    },
     "is_active": {
         "type": Boolean,
         "default": false
@@ -13,7 +16,10 @@ var CommentSchema = new Schema({
         "type": Boolean,
         "default": false
     },
-    "text": String,
+    "text": {
+        "type": String,
+        "required": true
+    },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
@@ -32,5 +38,5 @@ var CommentSchema = new Schema({
     "autoIndex": false
 });
 
-Comments.index({"category_id": 1, "name": 1, "slug": 1, "parent_id": 1});
-module.exports = mongoose.model("Category", CategorySchema);
+CommentSchema.index({"user_id": 1});
+module.exports = mongoose.model("Comment", CommentSchema);

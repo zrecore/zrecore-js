@@ -2,22 +2,17 @@ var mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var CategorySchema = new Schema({
+var FolderSchema = new Schema({
     "id": ObjectId,
     "name": {
         "type": String,
         "required": true,
-        "unique": true,
-        "trim": true
+        "unique": true
     },
     "slug": {
         "type": String,
         "required": true,
         "unique": true
-    },
-    "is_active": {
-        "type": Boolean,
-        "default": false
     },
     "parent_id": {
         "type": ObjectId,
@@ -41,5 +36,5 @@ var CategorySchema = new Schema({
     "autoIndex": false
 });
 
-CategorySchema.index({"name": 1, "slug": 1, "parent_id": 1});
-module.exports = mongoose.model("Category", CategorySchema);
+FolderSchema.index({"name": 1, "slug": 1, "parent_id": 1});
+module.exports = mongoose.model("Folder", FolderSchema);

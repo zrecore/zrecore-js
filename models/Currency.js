@@ -2,26 +2,21 @@ var mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var CategorySchema = new Schema({
+var CurrencySchema = new Schema({
     "id": ObjectId,
-    "name": {
-        "type": String,
-        "required": true,
-        "unique": true,
-        "trim": true
-    },
-    "slug": {
+    "code": {
         "type": String,
         "required": true,
         "unique": true
     },
-    "is_active": {
+    "name": {
+        "type": String,
+        "required": true,
+        "unique": true
+    },
+    "is_default": {
         "type": Boolean,
         "default": false
-    },
-    "parent_id": {
-        "type": ObjectId,
-        "required": false
     },
     "timestamp_added": {
         "type": Date,
@@ -41,5 +36,5 @@ var CategorySchema = new Schema({
     "autoIndex": false
 });
 
-CategorySchema.index({"name": 1, "slug": 1, "parent_id": 1});
-module.exports = mongoose.model("Category", CategorySchema);
+CurrencySchema.index({"code": 1, "name": 1, "is_default": 1});
+module.exports = mongoose.model("Currency", CurrencySchema);

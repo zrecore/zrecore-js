@@ -7,7 +7,9 @@ var AclPermissionSchema = new Schema({
 	"permission_name": {
         "type": String,
         "required": true,
-        "default": ""
+        "unique": true,
+        "lowercase": true,
+        "trim": true
     },
 	"is_active": {
 		"type": Boolean,
@@ -32,5 +34,5 @@ var AclPermissionSchema = new Schema({
 	"autoIndex": false
 });
 
-AclPermissionSchema.index({"acl_permission_id": 1, "permission_name": 1});
+AclPermissionSchema.index({"permission_name": 1});
 module.exports = mongoose.model("AclPermission", AclPermissionSchema);

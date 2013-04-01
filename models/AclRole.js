@@ -4,7 +4,13 @@ var mongoose = require("mongoose"),
 
 var AclRoleSchema = new Schema({
 	"id": ObjectId,
-	"role_name": String,
+	"role_name": {
+        "type": String,
+        "required": true,
+        "unique": true,
+        "lowercase": true,
+        "trim": true
+    },
 	"is_active": {
 		"type": Boolean,
 		"required": true,
@@ -32,5 +38,5 @@ var AclRoleSchema = new Schema({
 	"autoIndex": false
 });
 
-AclRoleSchema.index({"acl_role_id": 1, "role_name": 1});
+AclRoleSchema.index({"role_name": 1});
 module.exports = mongoose.model("AclRole", AclRoleSchema);

@@ -47,12 +47,19 @@ var aclPermission = require('./routes/acl-permission');
 var aclResource = require('./routes/acl-resource');
 var aclRole = require('./routes/acl-role');
 var category = require('./routes/category');
+var coupon = require('./routes/coupon');
+var currency = require('./routes/currency');
+var _folder = require('./routes/folder');
+var _item = require('./routes/item');
 
 crud.setUpServer(server, '/acl-permission', aclPermission);
 crud.setUpServer(server, '/acl-resource', aclResource);
 crud.setUpServer(server, '/acl-role', aclRole);
 crud.setUpServer(server, '/category', category);
-
+crud.setUpServer(server, '/coupon', coupon);
+crud.setUpServer(server, '/currency', currency);
+crud.setUpServer(server, '/folder', _folder);
+crud.setUpServer(server, '/item', _item);
 
 server.listen(port, function () {
     console.log('Server is running on port ' + port);

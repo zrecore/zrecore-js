@@ -1,4 +1,4 @@
-var mModel  = require('../models/User.js'),
+var mModel  = require('../models/ItemCoupon.js'),
     _       = require('underscore'),
     c    = require('../lib/crud.js');
 

@@ -34,5 +34,5 @@ var AclResourceSchema = new Schema({
 	"autoIndex": false
 });
 
-AclResourceSchema.index({"resource_name": 1});
+AclResourceSchema.index({"resource_name": 1, "is_active": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 module.exports = mongoose.model("AclResource", AclResourceSchema);

@@ -55,5 +55,9 @@ var CouponSchema = new Schema({
     "autoIndex": false
 });
 
-CouponSchema.index({"code": 1, "start_date": 1, "end_date": 1, "item_price": 1});
+CouponSchema.index({
+    "code": 1, "start_date": 1, "end_date": 1, "item_price": 1, "service_price_per_unit": 1,
+    "subscription_sign_up_fee": 1, "subscription_price_per_unit": 1, "timestamp_added": 1, "timestamp_modified": 1,
+    "timestamp_deactivated": 1
+});
 module.exports = mongoose.model("Coupon", CouponSchema);

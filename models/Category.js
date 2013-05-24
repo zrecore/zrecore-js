@@ -41,5 +41,5 @@ var CategorySchema = new Schema({
     "autoIndex": false
 });
 
-CategorySchema.index({"name": 1, "slug": 1, "parent_id": 1});
+CategorySchema.index({"name": 1, "slug": 1, "parent_id": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 module.exports = mongoose.model("Category", CategorySchema);

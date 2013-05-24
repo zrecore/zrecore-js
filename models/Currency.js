@@ -36,5 +36,5 @@ var CurrencySchema = new Schema({
     "autoIndex": false
 });
 
-CurrencySchema.index({"code": 1, "name": 1, "is_default": 1});
+CurrencySchema.index({"code": 1, "name": 1, "is_default": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 module.exports = mongoose.model("Currency", CurrencySchema);

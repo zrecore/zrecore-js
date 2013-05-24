@@ -125,6 +125,7 @@ ItemSchema.index({
     "name": 1, "slug": 1, "sku": 1, "price": 1, "currency_id": 1, "category_id": 1, "availability_date": 1,
     "finite_amount_available": 1, "finite_unit_of_measure": 1, "max_purchase_amount": 1, "metric_unit_of_measure": 1,
     "metric_width": 1, "metric_height": 1, "metric_depth": 1, "min_purchase_amount": 1, "perishable_date": 1,
-    "weight": 1, "weight_unit_of_measure": 1, "is_available": 1, "is_finite": 1, "is_perishable": 1, "is_tangible": 1
+    "weight": 1, "weight_unit_of_measure": 1, "is_available": 1, "is_finite": 1, "is_perishable": 1, "is_tangible": 1,
+    "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1
 });
 module.exports = mongoose.model("Item", ItemSchema);

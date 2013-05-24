@@ -38,5 +38,5 @@ var CommentSchema = new Schema({
     "autoIndex": false
 });
 
-CommentSchema.index({"user_id": 1});
+CommentSchema.index({"user_id": 1, "is_active": 1, "is_spam": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 module.exports = mongoose.model("Comment", CommentSchema);

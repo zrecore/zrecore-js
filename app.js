@@ -1,3 +1,8 @@
+/**
+ * ZRECore.js - A REST-ful set of commerce related data models.
+ * @author ZRECommerce
+ * @license GPL v3 or higher.
+ */
 
 /**
  * Module dependencies.
@@ -43,23 +48,40 @@ mongoose.connect('mongodb://' + databaseHost + '/' + databaseName);
 
 server.use(restify.bodyParser());
 
-var aclPermission = require('./routes/acl-permission');
-var aclResource = require('./routes/acl-resource');
-var aclRole = require('./routes/acl-role');
-var category = require('./routes/category');
-var coupon = require('./routes/coupon');
-var currency = require('./routes/currency');
-var _folder = require('./routes/folder');
-var _item = require('./routes/item');
+/**
+ * Define our model and associated end-point.
+ * @type {Array}
+ */
+var models = [
+    'acl-permission',
+    'acl-resource',
+    'acl-role',
 
-crud.setUpServer(server, '/acl-permission', aclPermission);
-crud.setUpServer(server, '/acl-resource', aclResource);
-crud.setUpServer(server, '/acl-role', aclRole);
-crud.setUpServer(server, '/category', category);
-crud.setUpServer(server, '/coupon', coupon);
-crud.setUpServer(server, '/currency', currency);
-crud.setUpServer(server, '/folder', _folder);
-crud.setUpServer(server, '/item', _item);
+    'category',
+    'coupon',
+    'currency',
+
+    'folder',
+
+    'item',
+    'item-coupon',
+    'item-property',
+
+    'merchant-gateway',
+
+    'order'
+];
+
+
+var model = null;
+for (var i = 0; i < models.length; i++) {
+    model = require('./routes/' + models[i]);
+    crud.setUpServer(server, '/' + models[i], model);
+}
+
+/**
+ * Ok! Let's start the show.
+ */
 
 server.listen(port, function () {
     console.log('Server is running on port ' + port);

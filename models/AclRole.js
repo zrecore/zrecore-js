@@ -38,5 +38,5 @@ var AclRoleSchema = new Schema({
 	"autoIndex": false
 });
 
-AclRoleSchema.index({"role_name": 1});
+AclRoleSchema.index({"role_name": 1, "is_active": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 module.exports = mongoose.model("AclRole", AclRoleSchema);

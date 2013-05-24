@@ -15,8 +15,7 @@ var sslCaPath = '';
 var databaseHost = 'localhost';
 var databaseName = 'zrecore';
 
-var routes = require('./routes')
-  , http = require('http')
+var http = require('http')
   , path = require('path')
   , fs = require('fs')
   , restify = require('restify')
@@ -48,33 +47,17 @@ mongoose.connect('mongodb://' + databaseHost + '/' + databaseName);
 
 server.use(restify.bodyParser());
 
-/**
- * Define our model and associated end-point.
- * @type {Array}
- */
-var models = [
-    'acl-permission',
-    'acl-resource',
-    'acl-role',
+var routeFiles = fs.readdirSync('./routes');
+var route = '';
+var models = [];
 
-    'category',
-    'coupon',
-    'currency',
-
-    'folder',
-
-    'item',
-    'item-coupon',
-    'item-property',
-
-    'merchant-gateway',
-
-    'order'
-];
-
-
+for (var r = 0; r < routeFiles.length; r++) {
+    route = path.basename(routeFiles[r], '.js');
+    if (route != '') models.push(route);
+}
 var model = null;
 for (var i = 0; i < models.length; i++) {
+    console.log('...Routing ' + models[i]);
     model = require('./routes/' + models[i]);
     crud.setUpServer(server, '/' + models[i], model);
 }

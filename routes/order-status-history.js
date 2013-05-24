@@ -1,4 +1,4 @@
-var mModel  = require('../models/Comments.js'),
+var mModel  = require('../models/OrderStatusHistory.js'),
     _       = require('underscore'),
     c    = require('../lib/crud.js');
 

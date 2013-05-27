@@ -1,9 +1,14 @@
 {
   "name": "zrecore",
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aalbino/zrecore-js.git"
+  },
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node app",
+    "test": "node test/all.js"
   },
   "dependencies": {
     "restify": "2.x",

@@ -11,6 +11,20 @@ var ItemPropertySchema = new Schema({
     "property_id": {
         "type": ObjectId,
         "required": true
+    },
+    "timestamp_added": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_modified": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_deactivated": {
+        "type": Date,
+        "required": false
     }
 }, {
     "autoIndex": false
@@ -22,5 +36,6 @@ ItemPropertySchema.index({
 }, {
     "unique": true
 });
+ItemPropertySchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 
 module.exports = mongoose.model("ItemProperty", ItemPropertySchema);

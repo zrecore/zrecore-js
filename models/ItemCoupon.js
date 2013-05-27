@@ -11,6 +11,20 @@ var ItemCouponSchema = new Schema({
     "coupon_id": {
         "type": ObjectId,
         "required": true
+    },
+    "timestamp_added": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_modified": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_deactivated": {
+        "type": Date,
+        "required": false
     }
 }, {
     "autoIndex": false
@@ -22,5 +36,6 @@ ItemCouponSchema.index({
 }, {
     "unique": true
 });
+ItemCouponSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 
 module.exports = mongoose.model("ItemCoupon", ItemCouponSchema);

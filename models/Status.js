@@ -7,6 +7,20 @@ var StatusSchema = new Schema({
     "value": {
         "type": String,
         "required": true
+    },
+    "timestamp_added": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_modified": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_deactivated": {
+        "type": Date,
+        "required": false
     }
 }, {
     "autoIndex": false
@@ -15,5 +29,6 @@ var StatusSchema = new Schema({
 StatusSchema.index({
     "value": 1
 }, {"unique": true});
+StatusSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 
 module.exports = mongoose.model("Status", StatusSchema);

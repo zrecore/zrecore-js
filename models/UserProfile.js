@@ -2,14 +2,22 @@ var mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var OrderStatusHistorySchema = new Schema({
+var UserProfileSchema = new Schema({
     "id": ObjectId,
-    "status_id": {
+    "user_id": {
         "type": ObjectId,
         "required": true
     },
-    "change_date": {
-        "type": Date,
+    "about_me": {
+        "type": String,
+        "required": false
+    },
+    "facebook_handle": {
+        "type": String,
+        "required": false
+    },
+    "twitter_handle": {
+        "type": String,
         "required": false
     },
     "timestamp_added": {
@@ -30,13 +38,12 @@ var OrderStatusHistorySchema = new Schema({
     "autoIndex": false
 });
 
-OrderStatusHistorySchema.index({
-    "status_id": 1,
-    "change_date": 1
-}, {
-    "unique": true
+UserProfileSchema.index({
+    "user_id": 1
+}, {"unique": true});
+UserProfileSchema.index({
+    "facebook_handle": 1, "twitter_handle": 1,
+    "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1
 });
 
-OrderStatusHistorySchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
-
-module.exports = mongoose.model("OrderStatusHistory", OrderStatusHistorySchema);
+module.exports = mongoose.model("UserProfile", UserProfileSchema);

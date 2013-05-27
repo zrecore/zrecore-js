@@ -30,6 +30,20 @@ var OrderServiceSchema = new Schema({
         "type": Date,
         "default": Date.now,
         "required": true
+    },
+    "timestamp_added": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_modified": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_deactivated": {
+        "type": Date,
+        "required": false
     }
 }, {
     "autoIndex": false
@@ -41,7 +55,11 @@ OrderServiceSchema.index({
     "price": 1,
     "units": 1,
     "start_date": 1,
-    "end_date": 1
+    "end_date": 1,
+    "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1
 });
+OrderServiceSchema.index({
+    "service_id": 1, "order_id": 1
+}, {"unique": true});
 
 module.exports = mongoose.model("OrderService", OrderServiceSchema);

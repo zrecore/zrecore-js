@@ -23,6 +23,20 @@ var OrderSubscriptionSchema = new Schema({
     "subscription_end_date": {
         "type": Date,
         "required": true
+    },
+    "timestamp_added": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_modified": {
+        "type": Date,
+        "default": Date.now,
+        "required": false
+    },
+    "timestamp_deactivated": {
+        "type": Date,
+        "required": false
     }
 }, {
     "autoIndex": false
@@ -34,5 +48,6 @@ OrderSubscriptionSchema.index({
 }, {
     "unique": true
 });
+OrderSubscriptionSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 
 module.exports = mongoose.model("OrderSubscription", OrderSubscriptionSchema);

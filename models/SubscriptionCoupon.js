@@ -2,9 +2,9 @@ var mongoose = require("mongoose"),
     Schema = mongoose.Schema,
     ObjectId = Schema.ObjectId;
 
-var OrderCouponSchema = new Schema({
+var SubscriptionCouponSchema = new Schema({
     "id": ObjectId,
-    "order_id": {
+    "subscription_id": {
         "type": ObjectId,
         "required": true
     },
@@ -30,11 +30,8 @@ var OrderCouponSchema = new Schema({
     "autoIndex": false
 });
 
-OrderCouponSchema.index({
-    "order_id": 1,
-    "coupon_id": 1
-}, {
-    "unique": true
-});
 
-module.exports = mongoose.model("OrderCoupon", OrderCouponSchema);
+SubscriptionCouponSchema.index({"subscription_id": 1, "coupon_id": 1}, {"unique": true});
+SubscriptionCouponSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
+
+module.exports = mongoose.model("SubscriptionCoupon", SubscriptionCouponSchema);

@@ -18,8 +18,10 @@ var databaseName = 'zrecore';
 var http = require('http')
   , path = require('path')
   , fs = require('fs')
-  , restify = require('restify')
-  , crud = require('./lib/crud.js');
+  , restify = require('restify');
+
+var ZRECORE_DIR = __dirname;
+var crud = require(ZRECORE_DIR + '/lib/crud.js');
 
 
 var server;
@@ -47,7 +49,7 @@ mongoose.connect('mongodb://' + databaseHost + '/' + databaseName);
 
 server.use(restify.bodyParser());
 
-var routeFiles = fs.readdirSync('./routes');
+var routeFiles = fs.readdirSync( ZRECORE_DIR + '/routes');
 var route = '';
 var models = [];
 

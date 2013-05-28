@@ -6,9 +6,18 @@ ZRECore.js - A RESTful interface to commonly used 'commerce' data models.
 
 How to use
 ==========
-Simply deploy on your favorite node stack, and run the app.js file. Then use HTTP GET/PUT/POST/DELETE methods on the end-points (such as /acl-permission or /item)
 
-See the package.json file for dependencies.
+Use `npm install zrecore`
+
+Then open up your main node file (like app.js, or server.js, or whatever), and add the following line:
+
+```javascript
+var zrecore = require('zrecore');
+```
+
+Then use HTTP GET/PUT/POST/DELETE methods on the data model end-points (such as /acl-permission or /item)
+
+See the package.json file for dependencies. The full list of data models are listed below.
 
 How are data models related to each other?
 ==========

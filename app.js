@@ -50,7 +50,9 @@ mongoose.connect('mongodb://' + databaseHost + '/' + databaseName);
  */
 
 // ...Enforce API authentication
+server.use(restify.fullResponse());
 server.use(restify.bodyParser());
+server.use(restify.queryParser());
 
 if (authorizationRequired) {
 server.pre(function (req, res, next) {

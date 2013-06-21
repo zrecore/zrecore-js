@@ -32,7 +32,7 @@ var UserSchema = new Schema({
     },
 
     "password_hash": {
-        "type": Buffer,
+        "type": String,
         "required": true
     },
     "password_is_temporary": {

@@ -25,6 +25,25 @@ var http = require('http')
 var ZRECORE_DIR = __dirname;
 var crud = require(ZRECORE_DIR + '/lib/crud.js');
 
+// Load config if found
+try {
+    // Found. Load them.
+    var config = require(ZRECORE_DIR + '/_config.js')
+    if (!_.isUndefined(config.port)) port = config.port;
+    if (!_.isUndefined(config.useSSL)) useSSL = config.useSSL;
+    if (!_.isUndefined(config.sslCertificatePath)) sslCertificatePath = config.sslCertificatePath;
+    if (!_.isUndefined(config.sslKeyPath)) sslKeyPath = config.sslKeyPath;
+    if (!_.isUndefined(config.sslCaPath)) sslCaPath = config.sslCaPath;
+    if (!_.isUndefined(config.databaseHost)) databaseHost = config.databaseHost;
+    if (!_.isUndefined(config.databaseName)) databaseName = config.databaseName;
+    if (!_.isUndefined(config.authorizationRequired)) authorizationRequired = config.authorizationRequired;
+
+    console.log('Loaded config.');
+
+} catch (e) {
+    // Not found. Continue
+}
+
 
 var server;
 // ...Do we want to enable SSL support?

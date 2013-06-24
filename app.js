@@ -58,6 +58,7 @@ if (authorizationRequired) {
 server.pre(function (req, res, next) {
     var api_user = req.header('API-USER');
     var api_key = req.header('API-KEY');
+    var api_version = req.header('API-VERSION');
 
     if ( _.isUndefined( api_user ) || _.isUndefined(api_key) ) {
 
@@ -67,20 +68,25 @@ server.pre(function (req, res, next) {
         // ...Attempt to look it up.
         var User = require('./models/User.js');
 
-        var authUser = User.findOne({"handle": api_user}, function (err, user) {
-            if (user) {
-
-                user.comparePassword(api_key, function (err, isMatch) {
-                    if (err || !isMatch) {
-                       res.send(401, '401 Access Denied');
-                    } else {
-                        // OK! ...Just continue execution.
-                        next();
-                    }
-                });
+        var authUser = User.findOne({"handle": api_user}, function (err, doc) {
+            if (err) {
+                console.error(err.toString());
+                res.send(500, 'Internal server error.');
             } else {
-                // User not found
-                res.send(401, '401 Access Denied');
+                if (doc) {
+
+                    doc.comparePassword(api_key, function (err, isMatch) {
+                        if (err || !isMatch) {
+                           res.send(401, '401 Access Denied');
+                        } else {
+                            // OK! ...Just continue execution.
+                            next();
+                        }
+                    });
+                } else {
+                    // User not found
+                    res.send(401, '401 Access Denied');
+                }
             }
         });
     }

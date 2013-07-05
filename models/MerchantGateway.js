@@ -14,6 +14,11 @@ var MerchantGatewaySchema = new Schema({
         "required": true,
         "unique": true
     },
+    "is_default": {
+        "type": Boolean,
+        "default": 0,
+        "required": false
+    },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
@@ -35,6 +40,7 @@ var MerchantGatewaySchema = new Schema({
 MerchantGatewaySchema.index({
     "name": 1,
     "class": 1,
+    "is_default": 1,
     "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1
 });
 

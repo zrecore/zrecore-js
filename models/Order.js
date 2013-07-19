@@ -40,6 +40,10 @@ var OrderSchema = new Schema({
         "type": String,
         "required": true
     },
+    "country": {
+        "type": String,
+        "required": true
+    },
     "phone1": {
         "type": String,
         "required": false

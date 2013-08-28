@@ -3,31 +3,40 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var PageSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "folder_id": {
         "type": ObjectId,
-        "required": false
+        "required": false,
+        "index": true
     },
     "user_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "title": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
     "slug": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
     "is_active": {
         "type": Boolean,
         "required": true,
-        "default": false
+        "default": false,
+        "index": true
     },
     "excerpt": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
     "content": {
         "type": String,
@@ -37,22 +46,25 @@ var PageSchema = new Schema({
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
 });
 
-PageSchema.index({ "folder_id": 1, "user_id": 1, "is_active": 1, "excerpt": 1, "content": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1 });
+//PageSchema.index({ "folder_id": 1, "user_id": 1, "is_active": 1, "excerpt": 1, "content": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1 });
 PageSchema.index({ "title": 1 }, { "unique": true });
 PageSchema.index({ "slug": 1 }, { "unique": true });
 

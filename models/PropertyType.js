@@ -3,30 +3,37 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var PropertyTypeSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "type": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
 
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
 });
 
-PropertyTypeSchema.index({ "type": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1 });
+//PropertyTypeSchema.index({ "type": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1 });
 
 module.exports = mongoose.model("PropertyType", PropertyTypeSchema);

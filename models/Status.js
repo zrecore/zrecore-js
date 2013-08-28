@@ -3,24 +3,31 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var StatusSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "value": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
@@ -29,6 +36,6 @@ var StatusSchema = new Schema({
 StatusSchema.index({
     "value": 1
 }, {"unique": true});
-StatusSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
+//StatusSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 
 module.exports = mongoose.model("Status", StatusSchema);

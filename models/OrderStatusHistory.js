@@ -3,28 +3,36 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var OrderStatusHistorySchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "status_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "change_date": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
@@ -37,6 +45,6 @@ OrderStatusHistorySchema.index({
     "unique": true
 });
 
-OrderStatusHistorySchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
+//OrderStatusHistorySchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 
 module.exports = mongoose.model("OrderStatusHistory", OrderStatusHistorySchema);

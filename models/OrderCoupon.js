@@ -3,28 +3,36 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var OrderCouponSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "order_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "coupon_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false

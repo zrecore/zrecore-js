@@ -3,7 +3,10 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var CouponSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "code": {
         "type": String,
         "required": true,
@@ -11,53 +14,63 @@ var CouponSchema = new Schema({
     },
     "start_date": {
         "type": Date,
-        "required": true
+        "required": true,
+        "index": true
     },
     "end_date": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     },
     "is_active": {
         "type": Boolean,
-        "default": false
+        "default": false,
+        "index": true
     },
     "item_price": {
         "type": Number,
-        "required": true
+        "required": true,
+        "index": true
     },
     "service_price_per_unit": {
         "type": Number,
-        "required": false
+        "required": false,
+        "index": true
     },
     "subscription_sign_up_fee": {
         "type": Number,
-        "required": false
+        "required": false,
+        "index": true
     },
     "subscription_price_per_unit": {
         "type": Number,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
 });
 
-CouponSchema.index({
-    "code": 1, "start_date": 1, "end_date": 1, "item_price": 1, "service_price_per_unit": 1,
-    "subscription_sign_up_fee": 1, "subscription_price_per_unit": 1, "timestamp_added": 1, "timestamp_modified": 1,
-    "timestamp_deactivated": 1
-});
+//CouponSchema.index({
+//    "code": 1, "start_date": 1, "end_date": 1, "item_price": 1, "service_price_per_unit": 1,
+//    "subscription_sign_up_fee": 1, "subscription_price_per_unit": 1, "timestamp_added": 1, "timestamp_modified": 1,
+//    "timestamp_deactivated": 1
+//});
 module.exports = mongoose.model("Coupon", CouponSchema);

@@ -3,28 +3,36 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var ServiceCouponSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "service_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "coupon_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
@@ -32,6 +40,6 @@ var ServiceCouponSchema = new Schema({
 
 
 ServiceCouponSchema.index({"service_id": 1, "coupon_id": 1}, {"unique": true});
-ServiceCouponSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1})
+//ServiceCouponSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1})
 
 module.exports = mongoose.model("ServiceCoupon", ServiceCouponSchema);

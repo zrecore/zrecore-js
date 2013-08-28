@@ -3,7 +3,10 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var UserProfileSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "user_id": {
         "type": ObjectId,
         "required": true
@@ -14,25 +17,30 @@ var UserProfileSchema = new Schema({
     },
     "facebook_handle": {
         "type": String,
-        "required": false
+        "required": false,
+        "index": true
     },
     "twitter_handle": {
         "type": String,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
@@ -41,9 +49,9 @@ var UserProfileSchema = new Schema({
 UserProfileSchema.index({
     "user_id": 1
 }, {"unique": true});
-UserProfileSchema.index({
-    "facebook_handle": 1, "twitter_handle": 1,
-    "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1
-});
+//UserProfileSchema.index({
+//    "facebook_handle": 1, "twitter_handle": 1,
+//    "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1
+//});
 
 module.exports = mongoose.model("UserProfile", UserProfileSchema);

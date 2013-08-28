@@ -3,28 +3,36 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var OrderItemSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "order_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "item_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
@@ -34,6 +42,5 @@ OrderItemSchema.index({
     "item_id": 1,
     "order_id": 1
 }, {"unique": 1});
-OrderItemSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1}, {"unique": 1});
 
 module.exports = mongoose.model("OrderItem", OrderItemSchema);

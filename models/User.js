@@ -5,30 +5,39 @@ var mongoose = require("mongoose"),
     SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "acl_role_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "first_name": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
     "last_name": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
     "email": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
     "handle": {
         "type": String,
-        "required": true
+        "required": true,
+        "index": true
     },
     "is_active": {
         "type": Boolean,
-        "default": false
+        "default": false,
+        "index": true
     },
 
     "password_hash": {
@@ -38,21 +47,25 @@ var UserSchema = new Schema({
     "password_is_temporary": {
         "type": Boolean,
         "required": true,
-        "default": true
+        "default": true,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
@@ -86,17 +99,17 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     });
 };
 
-UserSchema.index({
-    "acl_role_id": 1,
-    "first_name": 1,
-    "last_name": 1,
-    "email": 1,
-    "handle": 1,
-    "is_active": 1,
-    "password_hash": 1,
-    "password_is_temporary": 1,
-    "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1
-});
+//UserSchema.index({
+//    "acl_role_id": 1,
+//    "first_name": 1,
+//    "last_name": 1,
+//    "email": 1,
+//    "handle": 1,
+//    "is_active": 1,
+//    "password_hash": 1,
+//    "password_is_temporary": 1,
+//    "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1
+//});
 
 UserSchema.index({"email": 1}, {"unique": true});
 UserSchema.index({"handle": 1}, {"unique": true});

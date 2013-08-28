@@ -3,28 +3,36 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var SubscriptionPackageLevelSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "subscription_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "package_level_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
@@ -32,6 +40,6 @@ var SubscriptionPackageLevelSchema = new Schema({
 
 
 SubscriptionPackageLevelSchema.index({"subscription_id": 1, "package_level_id": 1}, {"unique": true});
-SubscriptionPackageLevelSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
+//SubscriptionPackageLevelSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 
 module.exports = mongoose.model("SubscriptionPackageLevel", SubscriptionPackageLevelSchema);

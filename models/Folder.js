@@ -3,7 +3,10 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var FolderSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "name": {
         "type": String,
         "required": true,
@@ -16,25 +19,29 @@ var FolderSchema = new Schema({
     },
     "parent_id": {
         "type": ObjectId,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
 });
 
-FolderSchema.index({"name": 1, "slug": 1, "parent_id": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
+//FolderSchema.index({"name": 1, "slug": 1, "parent_id": 1, "timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 module.exports = mongoose.model("Folder", FolderSchema);

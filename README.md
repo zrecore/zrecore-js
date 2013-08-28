@@ -9,15 +9,44 @@ How to use
 
 Use `npm install zrecore`
 
+
 Then open up your main node file (like app.js, or server.js, or whatever), and add the following line:
 
 ```javascript
 var zrecore = require('zrecore');
 ```
 
-Then use HTTP GET/PUT/POST/DELETE methods on the data model end-points (such as /acl-permission or /item)
+You can now use HTTP GET/PUT/POST/DELETE methods on the data model end-points (such as /acl-permission or /item)
 
-See the package.json file for dependencies. The full list of data models are listed below.
+You can add (or better yet, sym link)  a _config.js to your npm_module/zrecore/ directory. When zrecore is loaded, it will automatically use those settings instead of the default ones.
+
+Here is a sample _config.js for you to modify.
+
+```
+exports.port = 8080; // What port should this instance run on?
+exports.useSSL = false; // Do you want to force SSL? (restify 2.0 or greater I think)
+exports.sslCertificatePath = ''; // If useSSL is enabled (true), path to .crt file
+exports.sslKeyPath = ''; // If useSSL is enabled, path to key file
+exports.sslCaPath = ''; // If useSSL is enabled, path to ca or crt file
+exports.databaseHost = 'localhost'; // Where is your mongodb at?
+exports.databaseName = 'zrecore'; // What is the name of your mongo database
+
+// Set this to true once you have an User document in your mongo database to 
+// avoid unauthorized access of your RESTful end-points!
+//
+// If set to true, you must set the following headers with your 
+// RESTful requests:
+//
+// API-USER: the_user_name
+// API-KEY: the_user_password
+// API-VERSION: 1.0
+//
+// (The API-VERSION header is reserved for future use)
+exports.authorizationRequired = false; // Require valid User credentials to access this instance?
+
+```
+
+See the package.json file for dependencies. The full list of data model enpoints are available at http://www.zrecommerce.com
 
 How are data models related to each other?
 ==========
@@ -54,3 +83,5 @@ commonly used features, and provide a starting point with a basic set of data mo
  * User - A list of users that may access your application. This is usually used in conjunction with ACL data models to define who can (or can't) access certain resources, according to what permissions a user's role has on a resource.
   * UserAcl - A list defining what role is associated with a specific user, along with resources and permissions.
   * UserProfile - This is just a list containing common user 'profile' properties, such as 'twitter handle', or 'about me', etc.
+
+A complete list of related resources can be viewed at http://www.zrecommerce.com/

@@ -3,40 +3,51 @@ var mongoose = require("mongoose"),
     ObjectId = Schema.ObjectId;
 
 var OrderSubscriptionSchema = new Schema({
-    "id": ObjectId,
+    "id": {
+        "type": ObjectId,
+        "index": true
+    },
     "order_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "subscription_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "index": true
     },
     "subscription_price": {
         "type": Number,
-        "required": true
+        "required": true,
+        "index": true
     },
     "subscription_start_date": {
         "type": Date,
-        "required": true
+        "required": true,
+        "index": true
     },
     "subscription_end_date": {
         "type": Date,
-        "required": true
+        "required": true,
+        "index": true
     },
     "timestamp_added": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_modified": {
         "type": Date,
         "default": Date.now,
-        "required": false
+        "required": false,
+        "index": true
     },
     "timestamp_deactivated": {
         "type": Date,
-        "required": false
+        "required": false,
+        "index": true
     }
 }, {
     "autoIndex": false
@@ -48,6 +59,6 @@ OrderSubscriptionSchema.index({
 }, {
     "unique": true
 });
-OrderSubscriptionSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
+//OrderSubscriptionSchema.index({"timestamp_added": 1, "timestamp_modified": 1, "timestamp_deactivated": 1});
 
 module.exports = mongoose.model("OrderSubscription", OrderSubscriptionSchema);

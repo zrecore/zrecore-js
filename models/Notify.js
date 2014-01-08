@@ -19,7 +19,13 @@ var NotifySchema = new Schema({
     },
     "item_id": {
         "type": ObjectId,
-        "required": true,
+        "required": false,
+        "index": true
+    },
+    "is_mailing_list": {
+        "type": Boolean,
+        "default": false,
+        "required": false,
         "index": true
     },
     "is_active": {

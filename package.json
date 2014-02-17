@@ -1,6 +1,6 @@
 {
   "name": "zrecore",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "repository": {
     "type": "git",
     "url": "https://github.com/zrecommerce/zrecore-js.git"
@@ -14,7 +14,7 @@
   "dependencies": {
     "restify": "2.x",
     "mongodb": "*",
-    "mongoose": "3.6.x",
+    "mongoose": ">= 3.6.x",
     "socket.io": "*",
     "session": "*",
     "nodeunit": "*",

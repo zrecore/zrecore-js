@@ -10,7 +10,8 @@ var SubscriptionSchema = new Schema({
     "currency_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Currency"
     },
     "name": {
         "type": String,

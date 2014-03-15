@@ -10,12 +10,14 @@ var SubscriptionPackageLevelSchema = new Schema({
     "subscription_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Subscription"
     },
     "package_level_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "PackageLevel"
     },
     "timestamp_added": {
         "type": Date,

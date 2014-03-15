@@ -33,12 +33,14 @@ var ItemSchema = new Schema({
     },
     "currency_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "ref": "Currency"
     },
     "category_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Category"
     },
     "availability_date": {
         "type": Date,

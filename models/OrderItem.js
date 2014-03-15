@@ -10,12 +10,14 @@ var OrderItemSchema = new Schema({
     "order_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Order"
     },
     "item_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Item"
     },
     "timestamp_added": {
         "type": Date,

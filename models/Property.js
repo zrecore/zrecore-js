@@ -15,7 +15,8 @@ var PropertySchema = new Schema({
     "type_id": {
         "type": ObjectId,
         "required": false,
-        "index": true
+        "index": true,
+        "ref": "PropertyType"
     },
     "is_required": {
         "type": Boolean,

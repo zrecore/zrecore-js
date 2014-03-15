@@ -9,7 +9,8 @@ var UserProfileSchema = new Schema({
     },
     "user_id": {
         "type": ObjectId,
-        "required": true
+        "required": true,
+        "ref": "User"
     },
     "about_me": {
         "type": String,

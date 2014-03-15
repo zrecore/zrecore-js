@@ -10,7 +10,8 @@ var ItemPropertySchema = new Schema({
     "item_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Item"
     },
     "property_id": {
         "type": ObjectId,

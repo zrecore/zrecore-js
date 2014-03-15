@@ -10,17 +10,20 @@ var UserAclSchema = new Schema({
     "user_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "User"
     },
     "resource_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "AclResource"
     },
     "permission_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "AclPermission"
     },
     "timestamp_added": {
         "type": Date,

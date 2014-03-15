@@ -10,12 +10,14 @@ var ServiceCouponSchema = new Schema({
     "service_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Service"
     },
     "coupon_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Coupon"
     },
     "timestamp_added": {
         "type": Date,

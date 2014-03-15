@@ -20,7 +20,8 @@ var FolderSchema = new Schema({
     "parent_id": {
         "type": ObjectId,
         "required": false,
-        "index": true
+        "index": true,
+        "ref": "Folder"
     },
     "timestamp_added": {
         "type": Date,

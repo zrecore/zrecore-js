@@ -10,12 +10,14 @@ var ItemCouponSchema = new Schema({
     "item_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Item"
     },
     "coupon_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Coupon"
     },
     "timestamp_added": {
         "type": Date,

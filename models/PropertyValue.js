@@ -15,7 +15,8 @@ var PropertyValueSchema = new Schema({
     "type_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "PropertyType"
     },
 
     "timestamp_added": {

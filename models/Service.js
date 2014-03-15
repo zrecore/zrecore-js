@@ -10,7 +10,8 @@ var ServiceSchema = new Schema({
     "currency_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Currency"
     },
     "requires_subscription": {
         "type": Boolean,

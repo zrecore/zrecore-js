@@ -12,7 +12,8 @@ var UserSchema = new Schema({
     "acl_role_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "AclRole"
     },
     "first_name": {
         "type": String,

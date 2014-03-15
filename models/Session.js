@@ -12,6 +12,12 @@ var SessionSchema = new Schema({
         "required": true,
         "index": true
     },
+    "user_id": {
+        "type": ObjectId,
+        "required": false,
+        "index": true,
+        "ref": "User"
+    },
     "ip": {
         "type": String,
         "required": true,

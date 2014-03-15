@@ -10,7 +10,8 @@ var OrderStatusHistorySchema = new Schema({
     "status_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Status"
     },
     "change_date": {
         "type": Date,

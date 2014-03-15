@@ -10,12 +10,14 @@ var SubscriptionServiceSchema = new Schema({
     "subscription_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Subscription"
     },
     "service_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Service"
     },
     "timestamp_added": {
         "type": Date,

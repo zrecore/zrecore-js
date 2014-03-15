@@ -10,12 +10,14 @@ var OrderServiceSchema = new Schema({
     "service_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Service"
     },
     "order_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Order"
     },
     "price": {
         "type": Number,

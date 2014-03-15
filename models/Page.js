@@ -10,12 +10,14 @@ var PageSchema = new Schema({
     "folder_id": {
         "type": ObjectId,
         "required": false,
-        "index": true
+        "index": true,
+        "ref": "Folder"
     },
     "user_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "User"
     },
     "title": {
         "type": String,

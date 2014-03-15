@@ -75,7 +75,8 @@ var OrderSchema = new Schema({
     "creation_user_id": {
         "type": ObjectId,
         "required": false,
-        "index": true
+        "index": true,
+        "ref": "User"
     },
     "modification_user_id": {
         "type": ObjectId,

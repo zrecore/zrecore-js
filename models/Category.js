@@ -27,7 +27,8 @@ var CategorySchema = new Schema({
     "parent_id": {
         "type": ObjectId,
         "required": false,
-        "index": true
+        "index": true,
+        "ref": "Category"
     },
     "timestamp_added": {
         "type": Date,

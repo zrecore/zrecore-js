@@ -10,12 +10,14 @@ var ServicePackageLevelSchema = new Schema({
     "service_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Service"
     },
     "package_level_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "PackageLevel"
     },
     "timestamp_added": {
         "type": Date,

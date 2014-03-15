@@ -10,12 +10,14 @@ var OrderSubscriptionSchema = new Schema({
     "order_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Order"
     },
     "subscription_id": {
         "type": ObjectId,
         "required": true,
-        "index": true
+        "index": true,
+        "ref": "Subscription"
     },
     "subscription_price": {
         "type": Number,

@@ -97,7 +97,8 @@ var OrderSchema = new Schema({
     "merchant_gateway_id": {
         "type": ObjectId,
         "required": false,
-        "index": true
+        "index": true,
+        "ref": "MerchantGateway"
     },
 
     "merchant_key": {

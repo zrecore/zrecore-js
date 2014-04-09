@@ -64,6 +64,15 @@ if ( useSSL == true) {
 var mongoose = require("mongoose");
 mongoose.connect('mongodb://' + databaseHost + '/' + databaseName);
 
+try {
+    console.log( 'Try to fix mquery issue' );
+
+    delete mongoose.__proto__.mquery.permissions.count;
+    console.log( 'mquery fix applied to this instance' );
+} catch (ex) {
+    console.log( 'Cannot fix count with sort issue from mquery');
+}
+
 /**
  * Set up our REST controllers.
  */

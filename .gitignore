@@ -1,1 +1,6 @@
 _config.js
+.idea
+.vagrant
+nbproject
+/nbproject/private/
+node_modules

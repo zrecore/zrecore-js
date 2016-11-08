@@ -12,14 +12,14 @@
     "test": "node test/test.js"
   },
   "dependencies": {
-    "restify": "2.x",
-    "mongodb": "*",
-    "mongoose": ">= 3.6.x",
-    "socket.io": "*",
-    "session": "*",
-    "nodeunit": "*",
-    "extend": "*",
-    "underscore": "*",
-    "bcrypt": "*"
+    "bcrypt": "^0.8.7",
+    "extend": "^3.0.0",
+    "mongodb": "^2.2.11",
+    "mongoose": "^4.6.6",
+    "nodeunit": "^0.10.2",
+    "restify": "^4.2.0",
+    "session": "^0.1.0",
+    "socket.io": "^1.5.1",
+    "underscore": "^1.8.3"
   }
 }

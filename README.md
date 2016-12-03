@@ -1,8 +1,6 @@
 zrecore-js
 ==========
 
-[![Join the chat at https://gitter.im/zrecommerce/zrecore-js](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/zrecommerce/zrecore-js?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 ZRECore.js - A RESTful interface to commonly used 'commerce' data models.
 
 
@@ -48,7 +46,7 @@ exports.authorizationRequired = false; // Require valid User credentials to acce
 
 ```
 
-See the package.json file for dependencies. The full list of data model enpoints are available at http://www.zrecommerce.com
+See the package.json file for dependencies. The full list of data model enpoints are available at http://www.zrecore.com
 
 How are data models related to each other?
 ==========
@@ -86,4 +84,4 @@ commonly used features, and provide a starting point with a basic set of data mo
   * UserAcl - A list defining what role is associated with a specific user, along with resources and permissions.
   * UserProfile - This is just a list containing common user 'profile' properties, such as 'twitter handle', or 'about me', etc.
 
-A complete list of related resources can be viewed at http://www.zrecommerce.com/
+A complete list of related resources can be viewed at http://www.zrecore.com/
